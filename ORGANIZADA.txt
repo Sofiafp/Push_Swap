@@ -1,0 +1,142 @@
+MAIN.C
+
+- Só aceita os argumentos (se tiver mais do que a.out)
+- Manda os argumentos para o push_swap
+
+PUSH_SWAP.C
+
+push_swap()
+- Itera pelos argumentos,
+- Cria a estrutura
+	-- Dentro disto, checka se os argumentos sao numeros com is_it_num
+		, se nao forem	dá free à lista e acaba o processo;
+- Checks if there any repeting numebers --> FAZER AINDA
+- Checks if it is ordered and returns 0 if it is, stopping the process
+- Manda para ordenar no what_size()
+- Apagar a lista & dar save a tudo
+
+what_size()
+- Decide que algoritmo usar para que caso
+
+STRUCT_FUNCS.C
+
+create_new_node()
+- cria o novo node com o argumento dado
+
+insert_at_head()
+- mete o node no inicio da fila
+
+remove_node()
+- will remove the node I give it to, usualy the node is the head
+- Also, the node removed is freed here
+
+clean_lst()
+- It cleans the structure baby
+
+get_tail()
+- gets the last node of the list
+
+CHECKS.C
+
+is_it_num() 
+- checks if the argument is a num
+- outputs an error message on the standard error 
+
+is_it_ordered()
+- If it is ordered it returns 1,
+- Not ordered returns 0,
+- Checks if the list is ordered, if there is a value that is bigger than the
+next it will say its not ordered
+
+error_msg()
+- Just writes the error and cleans the list
+- retorna um 0 para matar o programa
+
+does_it_repeat()
+- Ve se ha numeros repetidos, retorna 1 se houver
+
+is_it_semi_ordered()
+- so it does the diference between an element and the next
+each time the number is positive, it ads to the count
+if it has more than one positive number, its not semi-ordered
+so it return a 0, if its ordered it returns a 1
+
+OPERATIONS.C
+one is for stack a
+zero is for stack b 
+
+ra_rb()
+- Rotates
+- the first elemtn becomes the last one
+N TENHO A ESCRITURA DAS ROTACOES AINDA
+
+rra_rrb()
+- Rotates reverse
+- The last element becomes the first nome
+N TENHO A ESCRITURA DAS ROTACOES AINDA
+
+pa_pb()
+- Pushes the first elemtn of A into stack B
+! when creating stack B for this dont forget to clear it !
+
+sa_sb()
+-Swich the first two elements
+
+TWO_THREE_ALGS.C
+
+two_algs()
+- Pretty easy to understand
+
+three_algs()
+- same
+
+three_algs_aux()
+- brute force baby
+
+BIG_ALGS.C
+
+two_algs_rev()
+- Its gonna swich the first teo elements of list b, or if its 
+advantageous, switch  the elements of the both stacks
+
+put_it_on_b()
+- 
+
+big_alg()
+- Checks if is already semi ordered and if it is it will rotate
+as much as necessary
+- Doesnt do the switch of only a because thats not advantageus
+
+BIG_ALGS_AUX.C
+is_it_bigger()
+-- it just compares two nodes, its ony usefuul cuz it checks if
+b is null or not
+
+lst_size()
+- tell how many elements a list has minus one
+
+find_the_biggest()
+- returns the pointer to the node with the biggest number
+
+is_it_semi_ordered()
+- returns 1 only if the list can be rotated in order to order it
+	-- it goes from the biggest value and then tries to check if
+	all numbers are smaaller than the precious until the tail
+	-- It checks if the tail is bigger than the head
+	-- then from the tail it checks if the previous number is
+	smaller than the next untill it reaches the biggest again
+
+rotate_to_order()
+- rotates a list in order to order it
+	-- it finds if the bigest value is at the first or last haf 
+	of the list, then it choses which rotation accordingly
+
+PUT_IN_PLACE.C
+
+find_the_place()
+- we need to get related
+
+rotate_it()
+- if it is -1 it will not change it, thats for when u need to put something
+on the front
+
