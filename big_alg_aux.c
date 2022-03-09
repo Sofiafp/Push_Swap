@@ -6,7 +6,7 @@
 /*   By: salegre- <salegre-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 20:36:34 by salegre-          #+#    #+#             */
-/*   Updated: 2022/02/06 21:51:33 by salegre-         ###   ########.fr       */
+/*   Updated: 2022/03/02 18:09:13 by salegre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ t_stack	*find_the_biggest(t_stack *head)
 			tmp = head;
 		head = head->next;
 	}
+	if (tmp->content < head->content)
+		tmp = head;
 	return (tmp);
 }
 

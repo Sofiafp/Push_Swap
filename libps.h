@@ -6,7 +6,7 @@
 /*   By: salegre- <salegre-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 19:30:55 by sofia             #+#    #+#             */
-/*   Updated: 2022/02/20 20:05:29 by salegre-         ###   ########.fr       */
+/*   Updated: 2022/03/09 16:32:15 by salegre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ int		find_the_place(t_stack *head, int val);
 t_stack	*rotate_it(t_stack *head, int count);
 int		find_the_smallest_aux(t_stack *lst_w_negs, int i);
 int		find_the_smalest(t_stack *lst, t_stack *lst_w_negs);
+int		chose_what_to_do(t_stack *head_a, t_stack *head);
+
 
 #endif
 

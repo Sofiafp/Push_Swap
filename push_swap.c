@@ -6,7 +6,7 @@
 /*   By: salegre- <salegre-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 19:40:14 by salegre-          #+#    #+#             */
-/*   Updated: 2022/02/20 18:32:41 by salegre-         ###   ########.fr       */
+/*   Updated: 2022/03/07 19:16:44 by salegre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 //APAGAR DEPOIS
 void	printlist(t_stack *head, int color)
 {
-//	(void)color;
-//	(void)head;
+	// (void)color;
+	// (void)head;
 	
 	if (head && color == 1)
 	{
