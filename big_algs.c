@@ -6,7 +6,7 @@
 /*   By: salegre- <salegre-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 20:00:06 by salegre-          #+#    #+#             */
-/*   Updated: 2022/03/07 19:19:28 by salegre-         ###   ########.fr       */
+/*   Updated: 2022/03/15 19:41:53 by salegre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,20 +80,25 @@ void	iterate_quartiles(t_stack **head_a, t_stack **head_b, int bigg)
 
 void	put_it_on_b(t_stack **head_a, t_stack **head_b)
 {
-	int	bigg;
-	int	small;
-	int	quarter;
-
-	bigg = find_the_biggest(*head_a)->content;
-	small = smallest_no(*head_a)->content;
-	quarter = (bigg - small) / 4;
-	bigg = bigg - quarter;
-	iterate_quartiles(&(*head_a), &(*head_b), bigg);
-	bigg = bigg - quarter;
-	iterate_quartiles(&(*head_a), &(*head_b), bigg);
-	bigg = bigg - quarter;
-	iterate_quartiles(&(*head_a), &(*head_b), bigg);
-	while (!is_it_ordered(*head_a) && lst_size(*head_a) != 3)
+	// int	bigg;
+	// int	small;
+	// int	quarter;
+//
+	// bigg = find_the_biggest(*head_a)->content;
+	// small = smallest_no(*head_a)->content;
+	// quarter = (bigg - small) / 4;
+	// bigg = bigg - quarter;
+	// iterate_quartiles(&(*head_a), &(*head_b), bigg);
+	// bigg = bigg - quarter;
+	// iterate_quartiles(&(*head_a), &(*head_b), bigg);
+	// bigg = bigg - quarter;
+	// iterate_quartiles(&(*head_a), &(*head_b), bigg);
+	// while (!is_it_ordered(*head_a) && lst_size(*head_a) != 3)
+	// {
+	// 	pa_pb(&(*head_a), &(*head_b), 0);
+	// }
+	// pa_pb(&(*head_a), &(*head_b), 0);
+	while ( lst_size(*head_a) != 3)
 	{
 		pa_pb(&(*head_a), &(*head_b), 0);
 	}
@@ -104,15 +109,25 @@ void	put_it_on_b(t_stack **head_a, t_stack **head_b)
 t_stack	*big_alg(t_stack *head_a)
 {
 	t_stack	*head_b;
+	t_stack *node_to_put;
 
 	head_b = NULL;
 
 	if (is_it_semi_ordered(head_a))
 		return (rotate_to_order(head_a));
 	put_it_on_b(&head_a, &head_b);
-	chose_what_to_do(head_a, head_b);
-	if (!is_it_ordered(head_a))
-		head_a = rotate_to_order(head_a);
+	while(head_b->next != NULL)
+	{
+		node_to_put = chose_what_to_do(head_a, head_b);
+//		printf("node_to_put: %d\n", node_to_put->content);
+		and_do_it(&(head_a), &(head_b), node_to_put);
+		pa_pb(&(head_b), &(head_a), 1);
+		printlist(head_a, 2);
+		printlist(head_b, 2);	
+	}
+	head_a = rotate_it(head_a, find_the_place(head_a, head_b->content));
+	pa_pb(&(head_b), &(head_a), 1);
+	head_a = rotate_to_order(head_a);
 	// printlist(head_a, 3);
 	// printlist(head_b, 3);
 	clean_lst(&head_b);

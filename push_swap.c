@@ -6,7 +6,7 @@
 /*   By: salegre- <salegre-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 19:40:14 by salegre-          #+#    #+#             */
-/*   Updated: 2022/03/07 19:16:44 by salegre-         ###   ########.fr       */
+/*   Updated: 2022/03/15 19:39:45 by salegre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,16 @@ void	printlist(t_stack *head, int color)
 		}
 		if (head != NULL)
 			printf("\033[0;35m%d | \033[0m", head->content);
+	}
+	if (head && color == 2)
+	{
+		while (head->next != NULL)
+		{
+			printf("\e[0;32m%d | \e[0m", head->content);
+			head = head->next;
+		}
+		if (head != NULL)
+			printf("\e[0;32m%d | \e[0m", head->content);
 	}
 	printf("\n ~~~~~~~~~~~~~~ \n");
 }

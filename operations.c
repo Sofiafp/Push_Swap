@@ -6,11 +6,25 @@
 /*   By: salegre- <salegre-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 15:07:10 by salegre-          #+#    #+#             */
-/*   Updated: 2022/02/17 18:02:10 by salegre-         ###   ########.fr       */
+/*   Updated: 2022/03/15 14:56:23 by salegre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libps.h"
+
+void	rr(t_stack **head_a, t_stack **head_b)
+{
+	ra_rb(&(*head_a), -1);
+	ra_rb(&(*head_b), -1);
+	ft_putstr_fd("rr\n", 1);
+}
+
+void	rrr(t_stack **head_a, t_stack **head_b)
+{
+	rra_rrb(&(*head_a), -1);
+	rra_rrb(&(*head_b), -1);
+	ft_putstr_fd("rrr\n", 1);
+}
 
 void	ra_rb(t_stack **head, int a_or_b)
 {
