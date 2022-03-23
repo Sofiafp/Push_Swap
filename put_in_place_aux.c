@@ -6,7 +6,7 @@
 /*   By: salegre- <salegre-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 20:02:37 by salegre-          #+#    #+#             */
-/*   Updated: 2022/02/20 20:03:15 by salegre-         ###   ########.fr       */
+/*   Updated: 2022/03/22 17:45:41 by salegre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,27 +50,33 @@ void	create_abs_lst(t_stack **lst_abs, t_stack *head)
 	insert_at_head(&(*lst_abs), node);
 }
 
-int	find_the_smallest_aux(t_stack *lst_w_negs, int i)
+void	find_the_smallest_aux(t_stack *lst_w_negs, int *i)
 {
+	int	prev_cont;
+	int	nxt_cont;
+
 	if (lst_w_negs->prev != NULL )
 	{
+		prev_cont = lst_w_negs->prev->content;
+		if (lst_w_negs->next != NULL)
+			nxt_cont = lst_w_negs->next->content;
 		if (lst_w_negs->content < 0)
 		{
-			if (lst_w_negs->prev->content > 0 && lst_w_negs->next != NULL && lst_w_negs->next->content < 0)
-				return (i - 1);
-			if (lst_w_negs->next == NULL) 
-				return (i - 1);
+			if (prev_cont > 0 && lst_w_negs->next != NULL && nxt_cont < 0)
+				*i = *i - 1;
+			if (lst_w_negs->next == NULL )
+				*i = *i - 1;
 		}
 		else
-			if (lst_w_negs->prev->content < 0 && lst_w_negs->next != NULL && lst_w_negs->next->content > 0)
-				return (i - 1);
-			if (lst_w_negs->next == NULL) 
-				return (i - 1);
-			if (lst_w_negs->prev->content < 0 && lst_w_negs->next != NULL && lst_w_negs->next->content < 0)
-				return (i - 1);
-			
+		{
+			if (prev_cont < 0 && lst_w_negs->next != NULL && nxt_cont > 0)
+				*i = *i - 1;
+			if (lst_w_negs->next == NULL )
+				*i = *i - 1;
+			if (prev_cont < 0 && lst_w_negs->next != NULL && nxt_cont < 0)
+				*i = *i - 1;
+		}
 	}
-	return (i);
 }
 
 int	find_the_smalest(t_stack *lst, t_stack *lst_w_negs)
@@ -96,5 +102,6 @@ int	find_the_smalest(t_stack *lst, t_stack *lst_w_negs)
 		tmp = tmp->next;
 		i++;
 	}
-	return (find_the_smallest_aux(lst_w_negs, i));
+	find_the_smallest_aux(lst_w_negs, &i);
+	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: salegre- <salegre-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 19:30:55 by sofia             #+#    #+#             */
-/*   Updated: 2022/03/15 15:30:54 by salegre-         ###   ########.fr       */
+/*   Updated: 2022/03/22 17:46:42 by salegre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,13 @@ void	create_dif_lst(t_stack	**lst, t_stack *head, int val);
 void	create_abs_lst(t_stack **lst_abs, t_stack *head);
 int		find_the_place(t_stack *head, int val);
 t_stack	*rotate_it(t_stack *head, int count);
-int		find_the_smallest_aux(t_stack *lst_w_negs, int i);
+void		find_the_smallest_aux(t_stack *lst_w_negs, int *i);
 int		find_the_smalest(t_stack *lst, t_stack *lst_w_negs);
 t_stack	*chose_what_to_do(t_stack *head_a, t_stack *head);
 t_stack	*smallest_no(t_stack *head);
-void and_do_it(t_stack **head_a, t_stack **head_b, t_stack *node_to_put);
-
+void	and_do_it(t_stack **head_a, t_stack **head_b, t_stack *node_to_put);
+void	do_less(t_stack **head_a, t_stack **head_b, int a, int b);
+void	rotate_it2(t_stack **head, int count, int a_or_b);
 
 #endif
 

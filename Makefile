@@ -6,7 +6,7 @@
 #    By: salegre- <salegre-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/06 20:00:00 by salegre-          #+#    #+#              #
-#    Updated: 2022/03/15 11:07:28 by salegre-         ###   ########.fr        #
+#    Updated: 2022/03/22 17:27:26 by salegre-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ SRCS	= libft/ft_isascii.c libft/ft_isprint.c libft/ft_isalpha.c libft/ft_isdigit
 			libft/ft_putchar_fd.c libft/ft_putstr_fd.c libft/ft_putendl_fd.c libft/ft_putnbr_fd.c \
 			libft/ft_substr.c libft/ft_strjoin.c libft/ft_strtrim.c libft/ft_split.c libft/ft_strmapi.c \
 			main.c push_swap.c struct_funcs.c checks.c operations.c two_three_algs.c big_algs.c \
-			big_alg_aux.c put_in_place.c put_in_place_aux.c chose_what_to_do.c do_it_on_purpose.c
+			big_alg_aux.c put_in_place.c put_in_place_aux.c chose_what_to_do.c do_it_on_purpose.c \
+			do_it_on_purpose_aux.c operations_aux.c
 
 OBJS	= $(SRCS:.c=.o)
 

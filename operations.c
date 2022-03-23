@@ -6,7 +6,7 @@
 /*   By: salegre- <salegre-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 15:07:10 by salegre-          #+#    #+#             */
-/*   Updated: 2022/03/15 14:56:23 by salegre-         ###   ########.fr       */
+/*   Updated: 2022/03/22 17:26:43 by salegre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,20 +87,4 @@ void	pa_pb(t_stack **head_a, t_stack**head_b, int a_or_b)
 		ft_putstr_fd("pa\n", 1);
 	if (a_or_b == 0)
 		ft_putstr_fd("pb\n", 1);
-}
-
-void	sa_sb(t_stack **head, int a_or_b)
-{
-	if ((*head)->next != NULL)
-	{
-		int tmp;
-
-		tmp = (*head)->content;
-		(*head)->content = (*head)->next->content;
-		(*head)->next->content = tmp;
-		if (a_or_b == 1)
-			ft_putstr_fd("sa\n", 1);
-		if (a_or_b == 0)
-			ft_putstr_fd("sb\n", 1);
-	}
 }

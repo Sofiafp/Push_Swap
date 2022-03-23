@@ -6,36 +6,11 @@
 /*   By: salegre- <salegre-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 20:00:06 by salegre-          #+#    #+#             */
-/*   Updated: 2022/03/15 19:41:53 by salegre-         ###   ########.fr       */
+/*   Updated: 2022/03/22 16:27:54 by salegre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libps.h"
-
-void	two_algs_rev(t_stack **head_a, t_stack **head_b)
-{
-	int	a;
-	int	b;
-
-	a = 0;
-	b = 0;
-	if (*head_b != NULL && (*head_b)->next != NULL)
-		if ((*head_b)->content < (*head_b)->next->content)
-			b = 1;
-	if (head_a != NULL && (*head_a)->next != NULL)
-		if ((*head_a)->content > (*head_a)->next->content)
-			a = 1;
-	if (a && b)
-	{
-		ft_putstr_fd("ss\n", 1);
-		sa_sb(&(*head_a), -1);
-		sa_sb(&(*head_b), -1);
-	}
-//	else if (a)
-//		sa_sb(&(*head_a), 1);
-	else if (b)
-		sa_sb(&(*head_b), 0);
-}
 
 t_stack	*smallest_no(t_stack *head)
 {
@@ -51,7 +26,6 @@ t_stack	*smallest_no(t_stack *head)
 	if (tmp->content > head->content)
 		tmp = head;
 	return (tmp);
-
 }
 
 int	no_more_quartile(t_stack *head, int bigg)
@@ -59,17 +33,17 @@ int	no_more_quartile(t_stack *head, int bigg)
 	while (head->next != NULL)
 	{
 		if (head->content > bigg)
-			return(1);
+			return (1);
 		head = head->next;
 	}
 	if (head->content > bigg)
-		return(1);
+		return (1);
 	return (0);
 }
 
 void	iterate_quartiles(t_stack **head_a, t_stack **head_b, int bigg)
 {
-	while (!is_it_ordered(*head_a) && lst_size(*head_a) != 3 && no_more_quartile(*head_a,bigg))
+	while (lst_size(*head_a) != 3 && no_more_quartile(*head_a,bigg))
 	{
 		if ((*head_a)->content > bigg)
 			pa_pb(&(*head_a), &(*head_b), 0);
@@ -80,28 +54,25 @@ void	iterate_quartiles(t_stack **head_a, t_stack **head_b, int bigg)
 
 void	put_it_on_b(t_stack **head_a, t_stack **head_b)
 {
-	// int	bigg;
-	// int	small;
-	// int	quarter;
-//
-	// bigg = find_the_biggest(*head_a)->content;
-	// small = smallest_no(*head_a)->content;
-	// quarter = (bigg - small) / 4;
-	// bigg = bigg - quarter;
-	// iterate_quartiles(&(*head_a), &(*head_b), bigg);
-	// bigg = bigg - quarter;
-	// iterate_quartiles(&(*head_a), &(*head_b), bigg);
-	// bigg = bigg - quarter;
-	// iterate_quartiles(&(*head_a), &(*head_b), bigg);
-	// while (!is_it_ordered(*head_a) && lst_size(*head_a) != 3)
-	// {
-	// 	pa_pb(&(*head_a), &(*head_b), 0);
-	// }
-	// pa_pb(&(*head_a), &(*head_b), 0);
-	while ( lst_size(*head_a) != 3)
-	{
+	int	bigg;
+	int	small;
+	int	quarter;
+
+	bigg = find_the_biggest(*head_a)->content;
+	small = smallest_no(*head_a)->content;
+	quarter = (bigg - small) / 6;
+	bigg = bigg - quarter;
+	iterate_quartiles(&(*head_a), &(*head_b), bigg);
+	bigg = bigg - quarter;
+	iterate_quartiles(&(*head_a), &(*head_b), bigg);
+	bigg = bigg - quarter;
+	iterate_quartiles(&(*head_a), &(*head_b), bigg);
+	bigg = bigg - quarter;
+	iterate_quartiles(&(*head_a), &(*head_b), bigg);
+	bigg = bigg - quarter;
+	iterate_quartiles(&(*head_a), &(*head_b), bigg);
+	while (!is_it_ordered(*head_a) && lst_size(*head_a) != 3)
 		pa_pb(&(*head_a), &(*head_b), 0);
-	}
 	pa_pb(&(*head_a), &(*head_b), 0);
 	*head_a = three_als(*head_a);
 }
@@ -109,17 +80,15 @@ void	put_it_on_b(t_stack **head_a, t_stack **head_b)
 t_stack	*big_alg(t_stack *head_a)
 {
 	t_stack	*head_b;
-	t_stack *node_to_put;
+	t_stack	*node_to_put;
 
 	head_b = NULL;
-
 	if (is_it_semi_ordered(head_a))
 		return (rotate_to_order(head_a));
 	put_it_on_b(&head_a, &head_b);
-	while(head_b->next != NULL)
+	while (head_b->next != NULL)
 	{
 		node_to_put = chose_what_to_do(head_a, head_b);
-//		printf("node_to_put: %d\n", node_to_put->content);
 		and_do_it(&(head_a), &(head_b), node_to_put);
 		pa_pb(&(head_b), &(head_a), 1);
 		printlist(head_a, 2);
@@ -128,8 +97,8 @@ t_stack	*big_alg(t_stack *head_a)
 	head_a = rotate_it(head_a, find_the_place(head_a, head_b->content));
 	pa_pb(&(head_b), &(head_a), 1);
 	head_a = rotate_to_order(head_a);
-	// printlist(head_a, 3);
-	// printlist(head_b, 3);
+	printlist(head_a, 3);
+	printlist(head_b, 3);
 	clean_lst(&head_b);
 	return (head_a);
 }
