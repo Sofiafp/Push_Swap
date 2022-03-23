@@ -3,29 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tisantos <tisantos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/03 21:22:19 by marvin            #+#    #+#             */
-/*   Updated: 2021/02/09 05:06:38 by tisantos         ###   ########.fr       */
+/*   Created: 2021/10/25 17:18:50 by salegre-          #+#    #+#             */
+/*   Updated: 2021/10/29 19:16:53 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <string.h>
+#include <stdio.h>
 #include "libft.h"
 
 char	*ft_strrchr(const char *str, int c)
 {
-	char	*last;
+	int		n;
+	char	paraefeitos;
 
-	last = 0;
-	if (c == '\0')
-		return ((char *)str + ft_strlen(str));
-	while (*str)
+	n = ft_strlen(str);
+	paraefeitos = c;
+	while (n + 1 != 0)
 	{
-		if (*str == c)
-		{
-			last = ((char *)str);
-		}
-		str++;
+		if (str[n] == paraefeitos)
+			return ((char *)&str[n]);
+		else
+			n--;
 	}
-	return (last);
+	return (0);
 }
+/*
+int main()
+{
+    printf("Output: %s\n", ft_strrchr("abbbbbb", 'a'));
+    printf("Expected: %s\n", strrchr("abbbbb", 'a'));
+}*/
+//era suposto ter a const mas isso ia dar problemas no return bleh

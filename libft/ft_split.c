@@ -3,56 +3,109 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tisantos <tisantos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/08 15:59:52 by marvin            #+#    #+#             */
-/*   Updated: 2021/02/20 13:37:05 by tisantos         ###   ########.fr       */
+/*   Created: 2021/10/28 16:54:40 by sofia             #+#    #+#             */
+/*   Updated: 2021/10/28 16:55:32 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	count_c(const char *s, char c)
+int	skipc(char const *s, char c)
 {
-	int	count;
+	int	i;
 
-	count = 0;
-	while (*s)
+	i = 0;
+	while (s[i] != '\0' && s[i] == c)
 	{
-		if (*s++ == c)
-			continue ;
-		count++;
-		while (*s && *s != c)
-			s++;
+		i++;
 	}
-	return (count);
+	return (i);
+}
+
+static int	special_strlen(char const *s, char c, int i)
+{
+	int	j;
+
+	j = 0;
+	while (s[i] != 0 && s[i] != c)
+	{
+		j++;
+		i++;
+	}
+	return (j);
+}
+
+int	npalavras(char const *s, char c)
+{
+	int	i;
+	int	j;
+
+	j = 0;
+	i = skipc(s, c);
+	while (s[i] != 0)
+	{
+		while (s[i] != c && s[i] != 0)
+		{
+			i++;
+		}
+		while (s[i] == c && s[i] != 0)
+		{
+			i++;
+		}
+		j++;
+	}
+	return (j);
+}
+
+void	auxiliar(char const *s, char ***str, char c, int i)
+{
+	int	k;
+	int	j;
+
+	(*str) = (char **)malloc(sizeof(char *) * (npalavras(s, c) + 1));
+	if ((*str) == NULL )
+		return ;
+	j = 0;
+	while (s[i] != '\0')
+	{
+		k = 0;
+		(*str)[j] = (char *)malloc((special_strlen(s, c, i) + 1)
+				* sizeof(char));
+		if ((*str)[j] == NULL)
+			return ;
+		while (s[i] != c && s[i] != '\0')
+			(*str)[j][k++] = s[i++];
+		(*str)[j++][k] = '\0';
+		while (s[i] == c && s[i] != '\0')
+			i++;
+	}
+	(*str)[j] = NULL;
 }
 
 char	**ft_split(char const *s, char c)
 {
-	t_split	val;
+	int		i;
+	char	**str;
 
-	val.j = 0;
 	if (!s)
 		return (NULL);
-	val.big_new = malloc(sizeof(char *) * (count_c(s, c) + 1));
-	if (!(val.big_new))
-		return (NULL);
-	val.i = 0;
-	val.start = 0;
-	while ((s[val.start + val.i] != 0) && (count_c(s, c) > 0))
-	{
-		while (s[val.start] == c)
-			val.start++;
-		while (s[val.start + val.i] != c && s[val.start + val.i] != '\0')
-			val.i++;
-		val.big_new[val.j++] = ft_substr(s, val.start, val.i);
-		while (s[val.start + val.i] == c && s[val.start + val.i] != '\0')
-			val.i++;
-		val.temp = (char *)s + val.i;
-		s = val.temp;
-		val.i = 0;
-	}
-	val.big_new[val.j] = 0;
-	return (val.big_new);
+	i = skipc(s, c);
+	auxiliar(s, &str, c, i);
+	return (str);
 }
+/*
+#include <stdio.h>
+
+int		main(void)
+{
+	char	*ptr;
+	char	**new;
+
+	ptr = "      split       this for   me  !       ";
+
+	new = (ft_split(ptr, ' '));
+	printf("%s-%s-%s-%s-%s", new[0], new[1], new[2], new[3], new[4]);
+	return (0);
+}*/

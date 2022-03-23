@@ -6,7 +6,7 @@
 /*   By: salegre- <salegre-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 19:30:55 by sofia             #+#    #+#             */
-/*   Updated: 2022/03/22 17:46:42 by salegre-         ###   ########.fr       */
+/*   Updated: 2022/03/23 13:14:25 by salegre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,11 @@ int		is_it_semi_ordered(t_stack *head);
 t_stack	*find_the_biggest(t_stack *head);
 int		lst_size(t_stack *head);
 t_stack	*rotate_to_order(t_stack *head);
-// APAGAR DEPOIS
-void	printlist(t_stack *head, int color);
-// ---
 void	create_dif_lst(t_stack	**lst, t_stack *head, int val);
 void	create_abs_lst(t_stack **lst_abs, t_stack *head);
 int		find_the_place(t_stack *head, int val);
 t_stack	*rotate_it(t_stack *head, int count);
-void		find_the_smallest_aux(t_stack *lst_w_negs, int *i);
+void	find_the_smallest_aux(t_stack *lst_w_negs, int *i);
 int		find_the_smalest(t_stack *lst, t_stack *lst_w_negs);
 t_stack	*chose_what_to_do(t_stack *head_a, t_stack *head);
 t_stack	*smallest_no(t_stack *head);

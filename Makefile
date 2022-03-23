@@ -6,7 +6,7 @@
 #    By: salegre- <salegre-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/06 20:00:00 by salegre-          #+#    #+#              #
-#    Updated: 2022/03/22 17:27:26 by salegre-         ###   ########.fr        #
+#    Updated: 2022/03/23 19:33:38 by salegre-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ $(NAME):	$(OBJS) $(INCLUDE)
 			gcc $(CFLAGS) push_swap.c -L. -lps -o push_swap
 
 .c.o:
-			$(CC) -g $(CFLAGS) -I$(INCLUDE) -c $< -o $(<:.c=.o)
+			$(CC) $(CFLAGS) -I$(INCLUDE) -c $< -o $(<:.c=.o)
 
 clean:
 			$(RM) $(OBJS)

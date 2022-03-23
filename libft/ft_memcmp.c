@@ -3,30 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tisantos <tisantos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: salegre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/06 02:47:44 by marvin            #+#    #+#             */
-/*   Updated: 2021/02/09 04:07:06 by tisantos         ###   ########.fr       */
+/*   Created: 2021/10/25 17:09:35 by salegre-          #+#    #+#             */
+/*   Updated: 2021/10/27 17:30:12 by salegre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+//int memcmp(const void *s1, const void *s2, size_t n)
+// 0 se forem iguais
+// 1 se s1 > s2
+// -1 se s1 < s2
 #include "libft.h"
+#include <unistd.h>
 
-int	ft_memcmp(const void *str1, const void *str2, size_t n)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	const unsigned char		*str1_ptr;
-	const unsigned char		*str2_ptr;
-	int						i;
+	unsigned char	*a;
+	unsigned char	*b;
+	size_t			i;
 
-	str1_ptr = (unsigned char *)str1;
-	str2_ptr = (unsigned char *)str2;
+	if (!n)
+		return (0);
+	a = (unsigned char *)s1;
+	b = (unsigned char *)s2;
 	i = 0;
-	while (n > 0)
+	while (i < n)
 	{
-		if (str1_ptr[i] != str2_ptr[i])
-			return (str1_ptr[i] - str2_ptr[i]);
+		if (a[i] != b[i])
+			return (a[i] - b[i]);
 		i++;
-		n--;
 	}
 	return (0);
 }
+/*
+#include <string.h>
+#include <stdio.h>
+int main()
+{
+    printf("Output: %d\n", ft_memcmp("He","Hello", 2));
+    printf("Expected: %d\n", memcmp("He","Hello", 2));
+}*/

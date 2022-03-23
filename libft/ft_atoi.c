@@ -3,39 +3,69 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tisantos <tisantos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: salegre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/03 10:24:26 by ncameiri          #+#    #+#             */
-/*   Updated: 2021/02/09 03:01:39 by tisantos         ###   ########.fr       */
+/*   Created: 2021/10/25 17:05:14 by salegre-          #+#    #+#             */
+/*   Updated: 2021/11/01 12:05:15 by salegre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+//saltar espaços
+// só aceita um sinal
+// qndo não dá imprime um 0
+// não esquecer bigger numbers
+
+#include <stdio.h>
+#include <stdlib.h>
 #include "libft.h"
+
+int	ft_isspace(const char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] == '\t' || str[i] == '\n' || str[i] == '\v'
+		|| str[i] == '\f' || str[i] == '\r' || str[i] == ' ')
+	{
+		i++;
+	}
+	return (i);
+}
+
+int	ft_sinal(const char *str, int i)
+{
+	if (str[i] == '-')
+		return (-1);
+	return (1);
+}
 
 int	ft_atoi(const char *str)
 {
-	long long	ret;
-	int			sign;
+	long int	i;
+	int			sinal;
+	long int	n;
 
-	ret = 0;
-	sign = 1;
-	while (*str == '\t' || *str == '\n' || *str == '\v' || \
-*str == '\f' || *str == '\r' || *str == ' ')
-		++str;
-	if (*str && (*str == 43 || *str == 45))
+	n = 0;
+	sinal = 1;
+	i = ft_isspace(str);
+	if (str[i] == '-' || str[i] == '+')
 	{
-		if (*str == 45)
-			sign = -1;
-		str++;
+		sinal = ft_sinal(str, i);
+		i++;
 	}
-	while ('0' <= *str && *str <= '9')
+	while (str[i] > 47 && str[i] < 58 && str[i] != '\0')
 	{
-		ret *= 10;
-		ret += (sign * (*(str++) - '0'));
-		if (ret > 2147483647)
-			return (-1);
-		if (ret < -2147483648)
-			return (0);
+		n = n + str[i] - 48;
+		n = n * 10;
+		i++;
 	}
-	return (ret);
+	n /= 10;
+	return (sinal * n);
 }
+/*
+int main()
+{
+    char str[] = "  -5432123";
+    printf("Output: %d\n", ft_atoi(str));
+    printf("Expected: %d\n", atoi(str));
+}*/

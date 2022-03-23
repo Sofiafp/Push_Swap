@@ -3,31 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tisantos <tisantos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: salegre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/05 19:21:21 by marvin            #+#    #+#             */
-/*   Updated: 2021/02/09 04:09:13 by tisantos         ###   ########.fr       */
+/*   Created: 2021/10/25 17:09:52 by salegre-          #+#    #+#             */
+/*   Updated: 2021/10/27 17:56:52 by salegre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	char		*dest_ptr;
-	const char	*src_ptr;
-	int			i;
+	char		*a;
+	const char	*b;
+	size_t		i;
 
-	if (!src && !dest)
-		return (NULL);
-	dest_ptr = (char *)dest;
-	src_ptr = (char *)src;
+	a = dst;
+	b = src;
 	i = 0;
-	while (n > 0)
+	if (!dst && !src)
+		return (NULL);
+	while (i < n)
 	{
-		dest_ptr[i] = src_ptr[i];
+		a[i] = b[i];
 		i++;
-		n--;
 	}
-	return (dest);
+	return (dst);
 }
+/*
+#include <string.h>
+
+int main()
+{
+
+    char dst1[20] = "";
+    char src1[] = "";
+
+    printf("Output: %s\n", ft_memcpy(dst1,src1,4));
+
+	char dst[20] = "";
+    char src[] = "";
+
+    printf("Expected: %s\n", memcpy(dst,src,4));
+}*/

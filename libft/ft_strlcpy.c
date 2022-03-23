@@ -3,37 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tisantos <tisantos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: salegre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/02 20:19:11 by marvin            #+#    #+#             */
-/*   Updated: 2021/02/09 04:37:57 by tisantos         ###   ########.fr       */
+/*   Created: 2021/10/25 17:16:05 by salegre-          #+#    #+#             */
+/*   Updated: 2021/10/27 14:42:51 by salegre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <string.h>
+#include <stdio.h>
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	size_t	lenght;
 	size_t	i;
 
-	lenght = 0;
 	i = 0;
-	if (!dst || !src)
-		return (0);
-	while (src[lenght] != '\0')
+	if (dstsize > 0)
 	{
-		lenght++;
+		while (i < (dstsize - 1) && src[i] != 0)
+		{
+			dst[i] = src[i];
+			i++;
+		}
+		dst[i] = '\0';
 	}
-	if (size == 0)
-	{
-		return (lenght);
-	}
-	while (src[i] != '\0' && i < (size - 1))
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = '\0';
-	return (lenght);
+	return (ft_strlen(src));
 }
+/*
+int main()
+{
+	char s11[] = "";
+    char s21[] = "IIIIII";
+    printf("Output: %zu\n", ft_strlcpy(s11, s21, 10));
+    char s1[] = "";
+    char s2[] = "IIIIII";
+    printf("Expected: %lu\n", strlcpy(s1, s2, 10));
+}*/

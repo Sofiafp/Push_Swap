@@ -3,34 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tisantos <tisantos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: salegre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/03 04:05:11 by marvin            #+#    #+#             */
-/*   Updated: 2021/02/09 04:36:01 by tisantos         ###   ########.fr       */
+/*   Created: 2021/10/25 17:15:48 by salegre-          #+#    #+#             */
+/*   Updated: 2021/10/25 17:15:50 by salegre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <string.h>
+#include <stdio.h>
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t size)
+int	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t	dst_size;
-	size_t	src_size;
-	size_t	i;
+	size_t	dst_l;
+	size_t	src_l;
+	size_t	j;
 
-	dst_size = ft_strlen(dst);
-	src_size = ft_strlen(src);
-	i = 0;
-	if (size == 0)
-		return (ft_strlen(src));
-	if (size < dst_size)
-		return (src_size + size);
-	while (src[i] != '\0' && dst_size < (size - 1))
+	dst_l = ft_strlen(dst);
+	src_l = ft_strlen(src);
+	j = dstsize;
+	while (*dst)
 	{
-		dst[dst_size] = src[i];
-		i++;
-		dst_size++;
+		dst++;
+		if (j > 0)
+			j--;
 	}
-	dst[dst_size] = '\0';
-	return (src_size + ft_strlen(dst) - i);
+	while (*src && j > 1)
+	{
+		*dst++ = *src++;
+		j--;
+	}
+	*dst = '\0';
+	if (dstsize > dst_l)
+		return (dst_l + src_l);
+	return (dstsize + src_l);
 }
+/*
+int main()
+{
+    char s11[20] = "Hellllllo";
+    char s21[20] = "HOOOOOOOOOO";
+    printf("Output: %d\n", ft_strlcat(s11, s21, 0));
+    char s1[20] = "Hellllllo";
+    char s2[20] = "HOOOOOOOOOO";
+    printf("Expected: %lu\n", strlcat(s1, s2, 0));
+}*/

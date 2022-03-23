@@ -3,28 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tisantos <tisantos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/06 02:05:41 by marvin            #+#    #+#             */
-/*   Updated: 2021/02/09 04:05:33 by tisantos         ###   ########.fr       */
+/*   Created: 2021/10/25 17:09:03 by salegre-          #+#    #+#             */
+/*   Updated: 2021/10/29 18:17:14 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// outputs null if doesnt find the char
+// acepts when n is bigger than the legnth of the string
+
+#include <string.h>
+#include <stdio.h>
 #include "libft.h"
 
-void	*ft_memchr(const void *str, int c, size_t n)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	unsigned char		*str_ptr;
-	int					i;
+	unsigned char	*a;
+	unsigned char	b;
+	size_t			i;
 
-	str_ptr = (unsigned char *)str;
+	a = (unsigned char *)s;
+	b = c;
 	i = 0;
-	while (n > 0)
+	if (!c && n == 0)
+		return (NULL);
+	while (i < n)
 	{
-		if (str_ptr[i] == (unsigned char)c)
-			return (str_ptr + i);
+		if (a[i] == b)
+			return (a + i);
 		i++;
-		n--;
 	}
-	return (NULL);
+	if (c == '\0')
+		return (a);
+	return (0);
 }
+/*
+int main()
+{
+	char s[] = {0, 1, 2 ,3 ,4 ,5};
+    printf("%s\n", ft_memchr(s, 0, 0));
+	char s2[] = {0, 1, 2 ,3 ,4 ,5};
+    printf("%s\n", memchr(s2, 0, 0));
+}*/
+
+//NOTES
+// ok então isto não me estava a funcionar só com const char *a & char b
+// por isso coloquei unsigned char. 
+// Ainda tive que dizer que a é igual a s* unsigned char
+// return a + i é o pointer

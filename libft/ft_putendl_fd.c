@@ -3,19 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: salegre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/12 15:33:39 by marvin            #+#    #+#             */
-/*   Updated: 2020/12/18 22:59:40 by marvin           ###   ########.fr       */
+/*   Created: 2021/11/01 12:08:57 by salegre-          #+#    #+#             */
+/*   Updated: 2021/11/01 12:09:06 by salegre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include "libft.h"
 
 void	ft_putendl_fd(char *s, int fd)
 {
-	if (fd < 0)
+	int	i;
+
+	i = 0;
+	if (!s)
 		return ;
-	ft_putstr_fd(s, fd);
+	while (s[i] != '\0')
+	{
+		ft_putchar_fd(s[i], fd);
+		i++;
+	}
 	ft_putchar_fd('\n', fd);
 }
+/*
+int main()
+{
+    ft_putendl_fd("Hello!", 1);
+}*/

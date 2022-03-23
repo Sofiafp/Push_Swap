@@ -3,55 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tisantos <tisantos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: salegre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/19 17:21:31 by marvin            #+#    #+#             */
-/*   Updated: 2021/02/09 05:09:41 by tisantos         ###   ########.fr       */
+/*   Created: 2021/10/25 17:17:42 by salegre-          #+#    #+#             */
+/*   Updated: 2021/11/01 12:12:58 by salegre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+#include <stdio.h>
 #include "libft.h"
-
-static char	*ncpy(char *dest, const char *src, unsigned int n)
-{
-	unsigned int	i;
-
-	i = 0;
-	while (src[i] != '\0' && i < n)
-	{
-		dest[i] = src[i];
-		++i;
-	}
-	if (i < n && src[i] == '\0')
-	{
-		while (dest[i] != '\0')
-		{
-			dest[i] = '\0';
-			++i;
-		}
-	}
-	return (dest);
-}
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t	beg;
-	size_t	end;
-	char	*new;
+	int		fin;
+	int		intro;
 
 	if (!s1 || !set)
 		return (NULL);
-	beg = 0;
-	while (s1[beg] && ft_strchr(set, s1[beg]))
-		beg++;
-	end = ft_strlen(s1 + beg);
-	if (end)
-		while (s1[end + beg - 1] != 0 && ft_strchr(set, s1[end + beg - 1]) != 0)
-			end--;
-	new = malloc(sizeof(char) * end + 1);
-	if (new == NULL)
-		return (NULL);
-	ncpy(new, (s1 + beg), end);
-	new[end] = '\0';
-	return (new);
+	intro = 0;
+	while (s1[intro] && ft_strchr(set, s1[intro]))
+		intro++;
+	fin = ft_strlen(s1) - 1;
+	while (fin && ft_strchr(set, s1[fin]))
+		fin--;
+	return (ft_substr(s1, intro, fin - intro + 1));
 }

@@ -6,7 +6,7 @@
 /*   By: salegre- <salegre-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 22:14:21 by salegre-          #+#    #+#             */
-/*   Updated: 2022/02/06 20:36:22 by salegre-         ###   ########.fr       */
+/*   Updated: 2022/03/23 13:47:17 by salegre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	is_it_num(char *arg)
 	i = 0;
 	while (arg[i] != '\0')
 	{
+		if (arg[i] == '-' && arg[i + 1] == '0')
+			return (0);
 		if ((arg[i] < '0' || arg[i] > '9') && arg[i] != '-')
 			return (0);
 		if (arg[i + 1] != '\0')
@@ -47,7 +49,7 @@ int	is_it_ordered(t_stack *head)
 
 int	error_msg(t_stack **head)
 {
-	ft_putstr_fd("Try again <3\n", 2);
+	ft_putstr_fd("Error\n", 2);
 	clean_lst(&(*head));
 	return (0);
 }

@@ -3,56 +3,72 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tisantos <tisantos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: salegre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/04 09:33:37 by ncameiri          #+#    #+#             */
-/*   Updated: 2021/02/11 19:08:50 by tisantos         ###   ########.fr       */
+/*   Created: 2021/11/01 12:07:26 by salegre-          #+#    #+#             */
+/*   Updated: 2021/11/01 12:07:28 by salegre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
 
-static int	absolute_value(int nbr)
+int	isneg(int n)
 {
-	if (nbr < 0)
-		return (-nbr);
-	return (nbr);
+	if (n < 0)
+		return (1);
+	return (0);
 }
 
-static int	get_len(int nbr)
+int	nalg(int n)
 {
-	int	len;
+	int	i;
 
-	len = 0;
-	if (nbr <= 0)
-		++len;
-	while (nbr != 0)
+	i = 0;
+	if (n == 0)
+		return (1);
+	if (isneg(n))
+		n *= -1;
+	while (n > 0)
 	{
-		++len;
-		nbr = nbr / 10;
+		n = n / 10;
+		i++;
 	}
-	return (len);
+	return (i);
 }
 
 char	*ft_itoa(int n)
 {
-	char	*result;
-	int		len;
+	char	*str;
+	int		l;
+	int		i;
 
-	len = get_len(n);
-	result = malloc(sizeof(char) * (len + 1));
-	if (result == NULL)
+	i = 0;
+	l = nalg(n) + isneg(n);
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
+	if (n == 0)
+		return (ft_strdup("0"));
+	str = (char *)malloc((l + 1) * sizeof(char));
+	if (str == NULL)
 		return (NULL);
-	result[len] = '\0';
-	if (n < 0)
-		result[0] = '-';
-	else if (n == 0)
-		result[0] = '0';
-	while (n != 0)
+	if (isneg(n))
 	{
-		--len;
-		result[len] = absolute_value(n % 10) + '0';
-		n = n / 10;
+		n *= -1;
+		str[i] = '-';
 	}
-	return (result);
+	str[l] = '\0';
+	while (l-- != 0 && n != 0)
+	{
+		str[l] = (n % 10) + 48;
+		n = n / (10);
+	}
+	return (str);
 }
+/*
+#include <stdio.h>
+int main()
+{
+    printf("%s\n", ft_itoa(-5656));
+}
+*/

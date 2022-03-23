@@ -3,29 +3,60 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tisantos <tisantos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: salegre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/05 23:40:57 by marvin            #+#    #+#             */
-/*   Updated: 2021/02/09 04:10:56 by tisantos         ###   ########.fr       */
+/*   Created: 2021/10/25 17:11:20 by salegre-          #+#    #+#             */
+/*   Updated: 2021/10/27 19:03:43 by salegre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// cpoies len bytes from src to dst
+// the copy is always done in a non-destructive manner ???
+// returns the original value of dst ???
+
+#include <stdio.h>
+#include <string.h>
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t n)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
+	size_t		i;
+	char		*a;
+	const char	*b;
+
+	a = dst;
+	b = src;
+	i = 0;
 	if (!dst && !src)
 		return (NULL);
-	if (src < dst)
+	if (a < b)
 	{
-		while (n--)
+		while (i < len)
 		{
-			((unsigned char *)dst)[n] = ((unsigned char *)src)[n];
+			a[i] = b[i];
+			i++;
 		}
 	}
-	else if (src > dst)
+	else
 	{
-		ft_memcpy(dst, src, n);
+		while (len--)
+		{
+			a[len] = b[len];
+		}
 	}
 	return (dst);
 }
+/*
+int main()
+{
+    char str1[] = "!!!!!!!";
+    char str2[] = "Quizz";
+
+    printf("%s\n",memmove(str1, str2, 2));
+
+    char str3[] = "!!!!!!!";
+    char str4[] = "Quizz";
+
+    printf("%s\n",ft_memmove(str3, str4, 2));
+
+}*/

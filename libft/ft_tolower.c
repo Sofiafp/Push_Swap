@@ -3,24 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tisantos <tisantos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: salegre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/04 23:05:56 by marvin            #+#    #+#             */
-/*   Updated: 2021/02/09 05:14:08 by tisantos         ###   ########.fr       */
+/*   Created: 2021/10/25 17:18:14 by salegre-          #+#    #+#             */
+/*   Updated: 2021/10/27 17:17:22 by salegre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <ctype.h>
+#include <stdio.h>
 #include "libft.h"
 
 int	ft_tolower(int c)
 {
-	int	re;
-
-	if (c < -1)
-		return ((unsigned char)c);
-	if (c >= 65 && c <= 90)
+	if (c > 64 && c < 91)
 		return (c + 32);
-	else
-		re = c;
-	return (re);
+	return (c);
 }
+/*
+int main()
+{
+    printf("Output: %c\n", ft_tolower('A'));
+    printf("Expected: %c\n", tolower('A'));
+}*/

@@ -3,29 +3,63 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: salegre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/12 15:59:37 by marvin            #+#    #+#             */
-/*   Updated: 2020/12/18 23:03:10 by marvin           ###   ########.fr       */
+/*   Created: 2021/11/01 14:10:44 by salegre-          #+#    #+#             */
+/*   Updated: 2021/11/01 14:11:47 by salegre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+int	nchar(int n)
+{
+	int	count;
+
+	count = 0;
+	while (n > 0)
+	{
+		n /= 10;
+		count++;
+	}
+	return (count);
+}
+
+int	power(int count)
+{
+	int	a;
+
+	a = 1;
+	while (count > 0)
+	{
+		a *= 10;
+		count--;
+	}
+	return (a);
+}
+
 void	ft_putnbr_fd(int n, int fd)
 {
-	unsigned int	nbr;
+	int		count;
+	int		a;
 
-	if (fd < 0)
+	if (n == -2147483648)
+	{
+		write(fd, "-2147483648", 11);
 		return ;
+	}
 	if (n < 0)
 	{
-		ft_putchar_fd('-', fd);
-		nbr = (unsigned int)(n * -1);
+		n = n * (-1);
+		write(fd, "-", 1);
 	}
-	else
-		nbr = (unsigned int)n;
-	if (nbr >= 10)
-		ft_putnbr_fd(nbr / 10, fd);
-	ft_putchar_fd((char)(nbr % 10 + 48), fd);
+	count = nchar(n) - 1;
+	while (count > 0)
+	{
+		a = n / (power(count));
+		ft_putnbr_fd(a, fd);
+		n = n - a * (power(count));
+		count--;
+	}
+	ft_putchar_fd((n % 10) + 48, fd);
 }

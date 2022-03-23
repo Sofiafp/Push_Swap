@@ -3,33 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tisantos <tisantos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofia <sofia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/04 14:00:53 by marvin            #+#    #+#             */
-/*   Updated: 2021/02/09 04:41:21 by tisantos         ###   ########.fr       */
+/*   Created: 2021/10/25 17:16:58 by salegre-          #+#    #+#             */
+/*   Updated: 2021/10/29 19:19:59 by sofia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+//compares not more than n characters
+#include <string.h>
+#include <stdio.h>
 #include "libft.h"
 
-int	ft_strncmp(const char *str1, const char *str2, size_t n)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	int		i;
-	size_t	len;
+	size_t	i;
 
 	i = 0;
-	len = n;
 	if (n == 0)
 		return (0);
-	while (str1[i] != '\0' && str2[i] != '\0' && len - 1 > 0)
-	{
-		if (str1[i] == str2[i])
-		{
-			i++;
-			len--;
-		}
-		else
-			break ;
-	}
-	return ((unsigned char)str1[i] - (unsigned char)str2[i]);
+	while (s1[i] != '\0' && s2[i] != '\0' && s1[i] == s2[i] && i < n - 1)
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
+/*
+int main()
+{
+    printf("Output: %d\n", ft_strncmp("t", "", 0));
+    printf("Expected: %d\n", strncmp("t", "", 0));
+}
+*/
+//NOTES
+// o primeiro if 
+// por alguma razão o original, quando n= 0 e algum dos strings é vazio
+//  imprime 0, este if works to acomplish that.

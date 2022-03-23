@@ -6,7 +6,7 @@
 /*   By: salegre- <salegre-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 20:00:06 by salegre-          #+#    #+#             */
-/*   Updated: 2022/03/22 16:27:54 by salegre-         ###   ########.fr       */
+/*   Updated: 2022/03/23 13:17:20 by salegre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	no_more_quartile(t_stack *head, int bigg)
 
 void	iterate_quartiles(t_stack **head_a, t_stack **head_b, int bigg)
 {
-	while (lst_size(*head_a) != 3 && no_more_quartile(*head_a,bigg))
+	while (lst_size(*head_a) != 3 && no_more_quartile(*head_a, bigg))
 	{
 		if ((*head_a)->content > bigg)
 			pa_pb(&(*head_a), &(*head_b), 0);
@@ -91,14 +91,10 @@ t_stack	*big_alg(t_stack *head_a)
 		node_to_put = chose_what_to_do(head_a, head_b);
 		and_do_it(&(head_a), &(head_b), node_to_put);
 		pa_pb(&(head_b), &(head_a), 1);
-		printlist(head_a, 2);
-		printlist(head_b, 2);	
 	}
 	head_a = rotate_it(head_a, find_the_place(head_a, head_b->content));
 	pa_pb(&(head_b), &(head_a), 1);
 	head_a = rotate_to_order(head_a);
-	printlist(head_a, 3);
-	printlist(head_b, 3);
 	clean_lst(&head_b);
 	return (head_a);
 }

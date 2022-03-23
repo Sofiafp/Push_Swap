@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: salegre- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/16 01:34:15 by marvin            #+#    #+#             */
-/*   Updated: 2020/12/16 04:00:25 by marvin           ###   ########.fr       */
+/*   Created: 2021/11/01 12:27:32 by salegre-          #+#    #+#             */
+/*   Updated: 2021/11/01 12:27:39 by salegre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 
 t_list	*ft_lstlast(t_list *lst)
 {
-	if (lst)
-	{
-		while (lst->next != NULL)
-			lst = lst->next;
-	}
-	else
+	if (!lst)
 		return (NULL);
+	while (lst->next != NULL)
+	{
+		lst = lst->next;
+	}
 	return (lst);
 }
