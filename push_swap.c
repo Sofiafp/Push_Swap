@@ -6,7 +6,7 @@
 /*   By: salegre- <salegre-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 19:40:14 by salegre-          #+#    #+#             */
-/*   Updated: 2022/03/23 13:17:01 by salegre-         ###   ########.fr       */
+/*   Updated: 2022/03/24 11:18:17 by salegre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ t_stack	*what_size(t_stack *head, int nargs)
 		return (two_algs(head));
 	if (nargs == 3)
 		return (three_als(head));
+	if (nargs == 5)
+		return (five_algs(head));
 	return (big_alg(head));
 }
 

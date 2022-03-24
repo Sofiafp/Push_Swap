@@ -6,7 +6,7 @@
 /*   By: salegre- <salegre-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 19:30:55 by sofia             #+#    #+#             */
-/*   Updated: 2022/03/23 13:14:25 by salegre-         ###   ########.fr       */
+/*   Updated: 2022/03/24 11:26:28 by salegre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ t_stack	*smallest_no(t_stack *head);
 void	and_do_it(t_stack **head_a, t_stack **head_b, t_stack *node_to_put);
 void	do_less(t_stack **head_a, t_stack **head_b, int a, int b);
 void	rotate_it2(t_stack **head, int count, int a_or_b);
+t_stack	*five_algs(t_stack *head_a);
+
 
 #endif
 

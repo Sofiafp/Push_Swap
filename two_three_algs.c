@@ -6,7 +6,7 @@
 /*   By: salegre- <salegre-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 19:25:22 by salegre-          #+#    #+#             */
-/*   Updated: 2022/02/06 19:52:44 by salegre-         ###   ########.fr       */
+/*   Updated: 2022/03/24 11:43:17 by salegre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,25 @@ t_stack	*three_als(t_stack *head)
 	k = head->next->next->content;
 	three_als_aux(i, j, k, &head);
 	return (head);
+}
+
+t_stack	*five_algs(t_stack *head_a)
+{
+	t_stack	*head_b;
+	t_stack	*node_to_put;
+
+	head_b = NULL;
+	pa_pb(&head_a, &head_b, 0);
+	pa_pb(&head_a, &head_b, 0);
+	head_a = three_als(head_a);
+	node_to_put = chose_what_to_do(head_a, head_b);
+	and_do_it(&head_a, &head_b, node_to_put);
+	pa_pb(&head_b, &head_a, 1);
+	node_to_put = chose_what_to_do(head_a, head_b);
+	and_do_it(&head_a, &head_b, node_to_put);
+	pa_pb(&head_b, &head_a, 1);
+	clean_lst(&head_b);
+	if (is_it_ordered(head_a))
+		return (head_a);
+	return (rotate_to_order(head_a));
 }
