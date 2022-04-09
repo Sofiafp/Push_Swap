@@ -6,7 +6,7 @@
 /*   By: salegre- <salegre-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 19:40:14 by salegre-          #+#    #+#             */
-/*   Updated: 2022/03/24 11:18:17 by salegre-         ###   ########.fr       */
+/*   Updated: 2022/04/09 15:28:23 by salegre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	push_swap(int argc, char **argv)
 		if (is_it_num(argv[--argc]) == 0)
 			return (error_msg(&head_a));
 		node = create_new_node(ft_atoi(argv[argc]));
+		if (is__int(argv[argc]) == 1)
+			return (error_msg(&head_a));
 		insert_at_head(&head_a, node);
 	}
 	if (does_it_repeat(head_a))

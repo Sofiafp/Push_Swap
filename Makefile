@@ -6,12 +6,12 @@
 #    By: salegre- <salegre-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/06 20:00:00 by salegre-          #+#    #+#              #
-#    Updated: 2022/03/23 19:33:38 by salegre-         ###   ########.fr        #
+#    Updated: 2022/04/09 16:30:20 by salegre-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror -g
+CFLAGS	= -Wall -Wextra -Werror
 LIB1	= ar -rcs
 
 RM		= /bin/rm -f
