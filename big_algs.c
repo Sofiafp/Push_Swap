@@ -6,7 +6,7 @@
 /*   By: salegre- <salegre-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 20:00:06 by salegre-          #+#    #+#             */
-/*   Updated: 2022/03/23 13:17:20 by salegre-         ###   ########.fr       */
+/*   Updated: 2022/04/09 19:38:53 by salegre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,20 +57,20 @@ void	put_it_on_b(t_stack **head_a, t_stack **head_b)
 	int	bigg;
 	int	small;
 	int	quarter;
+	int iter;
 
 	bigg = find_the_biggest(*head_a)->content;
 	small = smallest_no(*head_a)->content;
-	quarter = (bigg - small) / 6;
-	bigg = bigg - quarter;
-	iterate_quartiles(&(*head_a), &(*head_b), bigg);
-	bigg = bigg - quarter;
-	iterate_quartiles(&(*head_a), &(*head_b), bigg);
-	bigg = bigg - quarter;
-	iterate_quartiles(&(*head_a), &(*head_b), bigg);
-	bigg = bigg - quarter;
-	iterate_quartiles(&(*head_a), &(*head_b), bigg);
-	bigg = bigg - quarter;
-	iterate_quartiles(&(*head_a), &(*head_b), bigg);
+	if (lst_size(*head_a) <= 150)
+		iter = 4;
+	else
+		iter = 7;
+	quarter = (bigg - small) / iter;
+	while (iter--)
+	{
+		bigg = bigg - quarter;
+		iterate_quartiles(&(*head_a), &(*head_b), bigg);
+	}
 	while (!is_it_ordered(*head_a) && lst_size(*head_a) != 3)
 		pa_pb(&(*head_a), &(*head_b), 0);
 	pa_pb(&(*head_a), &(*head_b), 0);
