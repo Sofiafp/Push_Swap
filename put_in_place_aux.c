@@ -6,7 +6,7 @@
 /*   By: salegre- <salegre-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 20:02:37 by salegre-          #+#    #+#             */
-/*   Updated: 2022/04/09 19:28:13 by salegre-         ###   ########.fr       */
+/*   Updated: 2022/04/09 19:47:14 by salegre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ void	create_abs_lst(t_stack **lst_abs, t_stack *head)
 			node = create_new_node(tail->content * (-1));
 		else
 			node = create_new_node(tail->content);
+		if (!node)
+		{
+			clean_lst(lst_abs);
+			return ;
+		}
 		insert_at_head(&(*lst_abs), node);
 		tail = tail->prev;
 	}	
