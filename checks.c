@@ -6,7 +6,7 @@
 /*   By: salegre- <salegre-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 22:14:21 by salegre-          #+#    #+#             */
-/*   Updated: 2022/04/09 15:29:36 by salegre-         ###   ########.fr       */
+/*   Updated: 2022/06/17 16:38:09 by salegre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,14 +77,15 @@ int	does_it_repeat(t_stack *head)
 int	is__int(const char *str)
 {
 	long int	i;
-	int			sinal;
+	char		signal;
 	long int	n;
 
 	n = 0;
 	i = ft_isspace(str);
-	if (str[i] == '-' || str[i] == '+')
+	signal = '+';
+	if (str[i] == '-')
 	{
-		sinal = ft_sinal(str, i);
+		signal = str[i];
 		i++;
 	}
 	while (str[i] > 47 && str[i] < 58 && str[i] != '\0')
@@ -92,7 +93,7 @@ int	is__int(const char *str)
 		n = n + str[i] - 48;
 		n = n * 10;
 		i++;
-		if (n > 21474836470)
+		if ((n > 21474836480 && signal == '-') || (n > 21474836470 && signal == '+'))
 			return (1);
 	}
 	return (0);

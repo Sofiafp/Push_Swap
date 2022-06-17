@@ -6,7 +6,7 @@
 /*   By: salegre- <salegre-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 19:25:22 by salegre-          #+#    #+#             */
-/*   Updated: 2022/03/24 11:43:17 by salegre-         ###   ########.fr       */
+/*   Updated: 2022/04/28 19:25:23 by salegre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ t_stack	*two_algs(t_stack *head)
 
 void	three_als_aux(int i, int j, int k, t_stack **head_a)
 {
-	t_stack	*tail_a;
+//	t_stack	*tail_a;
 
-	tail_a = get_tail(*head_a);
+//	tail_a = get_tail(*head_a);
 	if (i < j)
 	{	
 		if (j > k && k > i)
